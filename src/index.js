@@ -7,6 +7,36 @@ const colors = [
   '#795548',
 ];
 
+const refs = {
+  startBtn: document.querySelector('button[data-action="start"]'),
+  stopBtn: document.querySelector('button[data-action="stop"]'),
+};
+
 const randomIntegerFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
+
+setRandomColor = () => {
+  const color = colors[randomIntegerFromInterval(0, colors.length - 1)];
+  document.body.style.backgroundColor = color;
+};
+
+const changeColor = {
+  intervalId: null,
+  isActive: false,
+
+  start() {
+    if (this.isActive) {
+      return;
+    }
+    this.intervalId = setInterval(() => setRandomColor(), 1000);
+    this.isActive = true;
+  },
+  stop() {
+    clearInterval(this.intervalId);
+    this.isActive = false;
+  },
+};
+
+refs.startBtn.addEventListener('click', changeColor.start.bind(changeColor));
+refs.stopBtn.addEventListener('click', changeColor.stop.bind(changeColor));
