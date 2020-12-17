@@ -21,7 +21,7 @@ setRandomColor = () => {
   document.body.style.backgroundColor = color;
 };
 
-const changeColor = {
+const coloriser = {
   intervalId: null,
   isActive: false,
 
@@ -38,5 +38,5 @@ const changeColor = {
   },
 };
 
-refs.startBtn.addEventListener('click', changeColor.start.bind(changeColor));
-refs.stopBtn.addEventListener('click', changeColor.stop.bind(changeColor));
+refs.startBtn.addEventListener('click', coloriser.start.bind(coloriser));
+refs.stopBtn.addEventListener('click', coloriser.stop.bind(coloriser));
